@@ -1,13 +1,26 @@
+USE employees;
 
+SELECT concat(first_name, ' ', last_name) AS full_name
+FROM employees
+WHERE last_name LIKE 'E%' AND last_name LIKE '%E';
 
-SELECT CONCAT(first_name, ' ', last_name) AS Full_Name FROM employees WHERE last_name LIKE 'E%' AND last_name LIKE '%e';
+SELECT *
+FROM employees
+WHERE month(birth_date) = 12 AND day(birth_date) = 25;
 
-SELECT * FROM employees WHERE MONTH(birth_date) = 12 AND DAY(birth_date) = 25;
+SELECT *
+FROM employees
+WHERE year(hire_date) BETWEEN 1990 AND 1999
+  AND month(birth_date) = 12 AND day(birth_date) = 25
+ORDER BY hire_date DESC;
 
-SELECT * FROM employees WHERE MONTH(birth_date) = 12 AND DAY(birth_date) = 25 AND YEAR(hire_date) LIKE '199%';
+SELECT *
+FROM employees
+WHERE year(hire_date) BETWEEN 1990 AND 1999
+  AND month(birth_date) = 12 AND day(birth_date) = 25
+ORDER BY hire_date DESC, birth_date;
 
-SELECT * FROM employees WHERE MONTH(birth_date) = 12 AND DAY(birth_date) = 25 AND YEAR(hire_date) LIKE '199%' ORDER BY birth_date, hire_date DESC;
-
-SELECT *, DATEDIFF(CURDATE(), hire_date) FROM employees WHERE MONTH(birth_date) = 12 AND DAY(birth_date) = 25 AND YEAR(hire_date) LIKE '199%' ORDER BY DATEDIFF(CURDATE(), hire_date) DESC;
-
-
+SELECT *, datediff(curdate(), hire_date) AS days_worked
+FROM employees
+WHERE year(hire_date) BETWEEN 1990 AND 1999
+  AND month(birth_date) = 12 AND day(birth_date) = 25;
